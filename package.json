@@ -1,0 +1,24 @@
+{
+  "name": "e-cards-api",
+  "version": "1.0.0",
+  "description": "A Backed app to create any kind of e-cards like Menu/Visiting/Greetings card.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selva-thayalan/E-cards-api.git"
+  },
+  "keywords": [
+    "express",
+    "crud",
+    "e-cards"
+  ],
+  "author": "Thaya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/selva-thayalan/E-cards-api/issues"
+  },
+  "homepage": "https://github.com/selva-thayalan/E-cards-api#readme"
+}
