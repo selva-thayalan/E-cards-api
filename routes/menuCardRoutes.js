@@ -1,9 +1,10 @@
 import express from "express";
 
+import { getMenus, postMenu } from "../controllers/menuCardController.js";
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.status(200).json([{ name: "Zubaitha", items: [{ name: "Dosa", price: 30 }, { name: "Idly", price: 10 }, { name: "Parotta", price: 15 }] }]);
-});
+router.route('/').get(getMenus).post(postMenu);
+
 
 export default router;
