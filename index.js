@@ -17,6 +17,8 @@ app.use(express.urlencoded({extended: false}));
 
 app.use('/menuCards',menuCards);
 
+app.use(errorHandler);
+
 app.get('/',(req, res) => {
     res.send("Hai! It's the home path of the E-cards API...");
 });
