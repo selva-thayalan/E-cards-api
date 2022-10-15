@@ -1,7 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import Color from "colors";
 
+import { connectDB } from "./config/db.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import menuCards from "./routes/menuCardRoutes.js";
 
@@ -9,6 +11,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
+connectDB();
 const app = express();
 
 app.use(cors());
