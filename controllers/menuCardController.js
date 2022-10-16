@@ -2,6 +2,16 @@ import asyncHandler from "express-async-handler";
 
 import MenuCard from "../models/menuCardModel.js";
 
+const getMenu = asyncHandler(async (req, res) => {
+    let id = req.params.id;
+    const menuCard = await MenuCard.findById(id);
+    if(!menuCard){
+        console.log(`Trying to get a menu that doesn't exist in the DB for the id: ${id}`.red);
+        res.status(404);
+        throw new Error("Menu not found!");
+    }
+    res.json(menuCard);   
+});
 
 const getMenus = asyncHandler(async (req, res) => {
     const menuCards = await MenuCard.find();
@@ -28,6 +38,7 @@ const updateMenu = asyncHandler(async (req, res) => {
 });
 
 export {
+    getMenu,
     getMenus,
     postMenu,
     updateMenu
