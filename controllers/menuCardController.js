@@ -1,14 +1,19 @@
-const menuCards = [{ name: "Zubaitha", items: [{ name: "Dosa", price: 30 }, { name: "Idly", price: 10 }, { name: "Parotta", price: 15 }] }];
+import asyncHandler from "express-async-handler";
 
-const getMenus = (req, res) => {
+import MenuCard from "../models/menuCardModel.js";
+
+
+const getMenus = asyncHandler(async (req, res) => {
+    const menuCards = await MenuCard.find();
     res.json(menuCards);
-};
+});
 
-const postMenu = (req, res) => {
-    console.log(`A new menu has added for: ${req.body.name}`);
-    menuCards.push(req.body);
+const postMenu = asyncHandler(async (req, res) => {
+    let {name, items} = req.body;
+    const menuCard = await MenuCard.create({name, items})
+    console.log(`A new menu has added for: ${name}`);
     res.status(200).json(req.body);
-};
+});
 
 
 export {
