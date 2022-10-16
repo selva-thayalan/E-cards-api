@@ -12,7 +12,7 @@ const postMenu = asyncHandler(async (req, res) => {
     let {name, items} = req.body;
     const menuCard = await MenuCard.create({name, items})
     console.log(`A new menu has added for: ${name}`);
-    res.status(200).json(req.body);
+    res.status(200).json(menuCard);
 });
 
 

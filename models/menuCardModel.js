@@ -17,6 +17,9 @@ const menuCardSchema = mongoose.Schema({
             type: Number
         }
     }]
+},
+{
+    timestamps: true
 });
 
 
