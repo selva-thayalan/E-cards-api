@@ -15,8 +15,20 @@ const postMenu = asyncHandler(async (req, res) => {
     res.status(200).json(menuCard);
 });
 
+const updateMenu = asyncHandler(async (req, res) => {
+    let id = req.params.id;
+    console.log(`Menu updating for id: ${id}`);
+    const menuCard = await MenuCard.findByIdAndUpdate(id, req.body);
+    if(!menuCard){
+        console.log(`Trying to update a menu that doesn't exist in the DB for the id: ${id}`.red);
+        res.status(501);
+        throw new Error("Menu not found to update!");
+    }
+    res.json(menuCard);    
+});
 
 export {
     getMenus,
-    postMenu
+    postMenu,
+    updateMenu
 };
