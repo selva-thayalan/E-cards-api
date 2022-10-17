@@ -6,6 +6,7 @@ import Color from "colors";
 import { connectDB } from "./config/db.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import menuCards from "./routes/menuCardRoutes.js";
+import qrCode from "./routes/qrCodeRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use('/menuCards',menuCards);
+app.use('/getQRCode',qrCode);
 
 app.use(errorHandler);
 
