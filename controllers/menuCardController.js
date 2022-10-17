@@ -37,9 +37,23 @@ const updateMenu = asyncHandler(async (req, res) => {
     res.json(menuCard);    
 });
 
+const deleteMenu = asyncHandler(async (req, res) => {
+    let id = req.params.id;
+    console.log(`Deleting the menu for id: ${id}`);
+    const menuCard = await MenuCard.findById(id);
+    if(!menuCard){
+        console.log(`Trying to delete a menu that doesn't exist in the DB for the id: ${id}`.red);
+        res.status(501);
+        throw new Error("Menu not found to delete!");
+    }
+    menuCard.remove();
+    res.status(200).json({id});
+});
+
 export {
     getMenu,
     getMenus,
     postMenu,
-    updateMenu
+    updateMenu,
+    deleteMenu
 };
