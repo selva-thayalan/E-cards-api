@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 
 import MenuCard from "../models/menuCardModel.js";
+import { base64QRCode } from "../controllers/qrCodeController.js"
 
 const getMenu = asyncHandler(async (req, res) => {
     let id = req.params.id;
@@ -22,7 +23,8 @@ const postMenu = asyncHandler(async (req, res) => {
     let {name, items} = req.body;
     const menuCard = await MenuCard.create({name, items})
     console.log(`A new menu has added for: ${name}`);
-    res.status(200).json(menuCard);
+    let qrCode = await base64QRCode(menuCard.id);//For now it will generate the QR code for the id only later we need to concat  the entire URL to link the menu viewing site.
+    res.status(200).json({qrCode, data: menuCard});
 });
 
 const updateMenu = asyncHandler(async (req, res) => {
